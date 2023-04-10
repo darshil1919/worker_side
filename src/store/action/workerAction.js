@@ -4,14 +4,14 @@ import {
   LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOAD_ADMIN_REQUEST,
-  LOAD_ADMIN_SUCCESS,
-  LOAD_ADMIN_FAIL,
+  LOAD_WORKER_REQUEST,
+  LOAD_WORKER_SUCCESS,
+  LOAD_WORKER_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
 } from "../slice/workerSlice/workerSlice";
 
-// admin login
+// worker login
 export const login =
   ({ email, password }) =>
     async (dispatch) => {
@@ -21,7 +21,7 @@ export const login =
         const config = { headers: { "Content-Type": "application/json" } };
 
         const { data } = await axios.post(
-          `/api/v1/admin/login`,
+          `/api/v1/worker/login`,
           { email, password },
           config
         );
@@ -35,24 +35,24 @@ export const login =
       }
     };
 
-// Load admin
-export const loadAdmin = () => async (dispatch) => {
+// Load worker
+export const loadWorker = () => async (dispatch) => {
   try {
-    dispatch(LOAD_ADMIN_REQUEST());
+    dispatch(LOAD_WORKER_REQUEST());
 
-    const { data } = await axios.get(`/api/v1/admin/me`);
+    const { data } = await axios.get(`/api/v1/worker/me`);
     console.log(data)
 
-    dispatch(LOAD_ADMIN_SUCCESS(data.admin));
+    dispatch(LOAD_WORKER_SUCCESS(data.worker));
   } catch (error) {
-    dispatch(LOAD_ADMIN_FAIL(error.response.data.message));
+    dispatch(LOAD_WORKER_FAIL(error.response));
   }
 };
 
-// Logout Admin
+// Logout Worker
 export const logout = () => async (dispatch) => {
   try {
-    await axios.get(`/api/v1/admin/logout`);
+    await axios.get(`/api/v1/worker/logout`);
 
     dispatch(LOGOUT_SUCCESS());
   } catch (error) {
