@@ -35,14 +35,14 @@ import Loader from "../Loader/Loader";
 // const ProtectedRoute = ({ children }) => {
 //   const { loading, isAuthenticated, admin } = useSelector((state) => state.admin);
 //   const navigate = useNavigate();
-  
+
 //   return isAuthenticated ? children : <Navigate to="/login" />;
 // }
 // export default ProtectedRoute;
 
 const ProtectedRoute = (props) => {
   const { Component } = props;
-  // const { loading, isAuthenticated } = useSelector((state) => state.admin);
+  const { loading, isAuthenticated } = useSelector((state) => state.worker);
   // const navigate = useNavigate();
   // useEffect(() => {
   //   if(!isAuthenticated){
@@ -50,12 +50,11 @@ const ProtectedRoute = (props) => {
   //   }
   // }, [])
 
-  // if(loading){
-  //   return <Loader />
-  // } else {
-  // return isAuthenticated ? <Component /> : <Navigate to="/login" />
-  return <Component />
-  // }
+  if (loading) {
+    return <Loader />
+  } else {
+    return isAuthenticated ? <Component /> : <Navigate to="/login" />
+  }
 }
 
 export default ProtectedRoute;

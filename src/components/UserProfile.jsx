@@ -5,7 +5,7 @@ import { Button } from '.';
 import { userProfileData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 import avatar from '../data/avatar.jpg';
-import { logout } from '../store/action/adminAction';
+import { logout } from '../store/action/workerAction';
 import { useDispatch } from 'react-redux';
 
 const UserProfile = () => {

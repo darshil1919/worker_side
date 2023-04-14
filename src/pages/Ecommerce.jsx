@@ -14,7 +14,7 @@ import Loading from "../components/small/Loading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Outlet, useNavigate } from "react-router";
-import { loadAdmin } from "../store/action/adminAction";
+import { loadAdmin } from "../store/action/workerAction";
 
 // const DropDown = ({ currentMode }) => (
 //   <div className="w-28 border-1 border-color px-2 py-1 rounded-md">
