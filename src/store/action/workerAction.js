@@ -40,7 +40,7 @@ export const loadWorker = () => async (dispatch) => {
   try {
     dispatch(LOAD_WORKER_REQUEST());
 
-    const { data } = await axios.get(`/api/v1/worker/me`);
+    const { data } = await axios.post(`/api/v1/worker/getworkerwithid`);
     console.log(data)
 
     dispatch(LOAD_WORKER_SUCCESS(data.worker));

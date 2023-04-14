@@ -65,8 +65,8 @@ const Sidebar = () => {
                 Pages
               </p>
               <NavLink
-                to="/orders"
-                key="orders"
+                to="/work"
+                key="work"
                 onClick={handleCloseSideBar}
                 style={({ isActive }) => ({
                   backgroundColor: isActive ? currentColor : '',
@@ -74,7 +74,7 @@ const Sidebar = () => {
                 className={({ isActive }) => (isActive ? activeLink : normalLink)}
               >
                 <AiOutlineShoppingCart />
-                <span className="capitalize ">orders</span>
+                <span className="capitalize ">work</span>
               </NavLink>
               <NavLink
                 to="/request"

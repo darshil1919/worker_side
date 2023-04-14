@@ -10,3 +10,4 @@ export { default as AddService } from './AddService';
 // export { default as AddEvent } from './AddEvent';
 export { default as AddEvents } from './AddEvents';
 export { default as UpdateEvent } from './UpdateEvent';
+export { default as Work } from './Work';

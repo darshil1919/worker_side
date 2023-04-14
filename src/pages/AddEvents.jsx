@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { addEvent } from "../store/action/eventAction";
-
+import './addEvent.css';
 
 //schema to validate event inputs 
 const schema = yup.object({

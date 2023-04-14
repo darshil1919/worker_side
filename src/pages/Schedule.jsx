@@ -23,7 +23,8 @@ const localizer = dateFnsLocalizer({
   startOfWeek,
   getDay,
   locales,
-})
+});
+
 
 const Schedule = ({ allEvent, getEvent, getSingleEvent, clearEvent }) => {
   const navigate = useNavigate();
@@ -77,6 +78,12 @@ const Schedule = ({ allEvent, getEvent, getSingleEvent, clearEvent }) => {
     setTimeout(() => clearEvent(), 300);
   }
 
+  const minTime = new Date();
+  minTime.setHours(8, 0, 0); // set minimum time to 9 am
+
+  const maxTime = new Date();
+  maxTime.setHours(20, 0, 0); // set maximum time to 8 pm
+
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Schedule" />
@@ -99,6 +106,8 @@ const Schedule = ({ allEvent, getEvent, getSingleEvent, clearEvent }) => {
           style={{ height: 500, margin: 50, fontFamily: 'Patrick Hand' }}
           onSelectEvent={openEventClick}
           eventPropGetter={eventStyleGetter}
+          min={minTime}
+          max={maxTime}
         />
       </div>
     </div>
