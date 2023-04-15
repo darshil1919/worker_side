@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../components';
 import { useNavigate } from "react-router-dom";
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
-import format from 'date-fns/format'
-import parse from 'date-fns/parse'
-import startOfWeek from 'date-fns/startOfWeek'
-import getDay from 'date-fns/getDay'
-import enUS from 'date-fns/locale/en-US'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import RequestDialog from '../components/request/RequestDialog';
 import { getEvent, getSingleEvent, clearEvent } from '../store/action/eventAction'
 import { getRequest, getSingleRequest } from '../store/action/requestAction'
 import { connect } from 'react-redux';
-import Button from '@mui/material/Button';
 import { AiFillEye } from "react-icons/ai";
 import IconButton from '@mui/material/IconButton';
 
@@ -51,7 +44,7 @@ const Request = ({ allEvent, getRequest, getSingleRequest, allRequest, clearEven
 
       <div>
         {
-          allRequest.map((data, index) => (
+          allRequest?.map((data, index) => (
             <div key={index} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 shadow-lg shadow-blue-500 my-10 hover:shadow-gray-500">
               <div className="flex flex-col  p-4">
                 <div><p>category: {data.categoryDetail.categoryName}</p></div>
