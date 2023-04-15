@@ -11,6 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { DropDownTreeComponent } from '@syncfusion/ej2-react-dropdowns';
+import * as moment from "moment";
 
 import TableSortLabel from '@mui/material/TableSortLabel';
 import TablePagination from '@mui/material/TablePagination';
@@ -25,6 +26,7 @@ import { visuallyHidden } from '@mui/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWork, deleteWork } from '../store/action/workAction';
 // import { getCategory } from "../store/action/categoryAction";
+import { AiFillEye } from "react-icons/ai";
 
 import {
   DELETE_WORK_RESET,
@@ -52,7 +54,6 @@ const Work = () => {
     return state.allWork;
   });
 
-  console.log("allWork----->", allWork);
   const { isDeleted } = useSelector((state) => {
     return state.work;
   });
@@ -83,7 +84,6 @@ const Work = () => {
         }
       }
     }
-    console.log("payload--->", payload);
     dispatch(getWork(payload));
 
   }, [dispatch, page, rowsPerPage, isDeleted, selectText, orderBy, order, searchText])
@@ -97,14 +97,14 @@ const Work = () => {
 
   const headCells = [
     {
-      id: 'grandTotal',
+      id: 'startTime',
       numeric: false,
-      label: 'grand total',
+      label: 'Start Time',
     },
     {
-      id: 'subTotal',
+      id: 'endTime',
       numeric: true,
-      label: 'sub total',
+      label: 'End Time',
     },
   ];
 
@@ -138,7 +138,6 @@ const Work = () => {
   let treeSettings = { autoCheck: true };
 
   const dropDownChange = (event) => {
-    console.log("event------->", event.value);
     setSelectText(event.value);
   }
 
@@ -166,7 +165,7 @@ const Work = () => {
               <div className='flex justify-center items-center py-2 sm:justify-center'>
                 <DropDownTreeComponent
                   id="dropdowntree"
-                  fields={{ dataSource: [{ name: 'confirmed' }, { name: 'completed' }, { name: 'cancelled' }], value: 'name', text: 'name' }}
+                  fields={{ dataSource: [{ name: 'confirmed' }, { name: 'working' }, { name: 'completed' }, { name: 'cancelled' },], value: 'name', text: 'name' }}
                   showCheckBox={true}
                   treeSettings={treeSettings}
                   mode="Delimiter"
@@ -215,35 +214,43 @@ const Work = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {allWork?.items?.map((row, index) => (
-                      <TableRow
-                        key={row._id}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                      >
-                        <TableCell align="center">{++index}</TableCell>
-                        <TableCell align="center">{row.grandTotal}</TableCell>
-                        <TableCell align="center">{row?.subTotal}</TableCell>
-                        <TableCell align="center">{row?.totalTime}</TableCell>
-                        <TableCell align="center">{row?.status /* ?
-                          <Chip label="Active" style={{ backgroundColor: '#4BB543', color: '#ffffff' }} /> :
-                          <Chip label="Inactive" style={{ backgroundColor: '#F44336', color: '#ffffff' }} /> */
-                        }</TableCell>
-                        <TableCell align="center">
-                          {/* <IconButton
+                    {allWork?.items?.map((row, index) => {
+                      let start = moment(row?.startTime).format("ddd DD MMM YY LT");
+                      let end = moment(row?.endTime).format("ddd DD MMM YY LT");
+                      return (
+                        <TableRow
+                          key={row._id}
+                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                          <TableCell align="center">{++index}</TableCell>
+                          <TableCell align="center">{start}</TableCell>
+                          <TableCell align="center">{end}</TableCell>
+                          <TableCell align="center">{row?.totalTime}</TableCell>
+                          <TableCell align="center">{row?.status == 'confirmed' ?
+                            <Chip label="confirmed" style={{ backgroundColor: '#ffe64d', color: '#000000' }} /> :
+                            row?.status == 'completed' ?
+                              < Chip label="completed" style={{ backgroundColor: '#2e7d32', color: '#ffffff' }} /> :
+                              row?.status == 'working' ?
+                                < Chip label="working" style={{ backgroundColor: '#1976d2', color: '#ffffff' }} /> :
+                                < Chip label="cancelled" style={{ backgroundColor: '#F44336', color: '#ffffff' }} />
+                          }</TableCell>
+                          <TableCell align="center">
+                            {/* <IconButton
                             onClick={() => navigate(`/sub-category/edit-subcategory/${row?._id}`)}
                           >
                             <EditIcon color="primary" />
                           </IconButton> */}
-                          <Button
-                            color="error"
-                            onClick={() => deleteData(row?._id)}
-                          >
-                            {/* <DeleteRoundedIcon sx={{ color: red[500] }} /> */}
-                            cancel
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                            <IconButton
+                              color="error"
+                              onClick={() => navigate(`/work/view/${row?._id}`)}
+                            >
+                              {/* <DeleteRoundedIcon sx={{ color: red[500] }} /> */}
+                              <AiFillEye fill='#a855f7' />
+                            </IconButton>
+                          </TableCell>
+                        </TableRow>
+                      )
+                    })}
                   </TableBody>
                 </Table>
               </TableContainer>

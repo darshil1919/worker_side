@@ -11,3 +11,4 @@ export { default as AddService } from './AddService';
 export { default as AddEvents } from './AddEvents';
 export { default as UpdateEvent } from './UpdateEvent';
 export { default as Work } from './Work';
+export { default as ViewWork } from './ViewWork';
