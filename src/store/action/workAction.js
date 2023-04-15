@@ -51,8 +51,8 @@ export function getSingleWork(payload) {
 
       const config = { headers: { "Content-Type": "application/json" } };
 
-      const { data } = await axios.post(`/api/v1/worker/getsinglework`, payload, config);
-      dispatch(WORK_SUCCESS(data.data.schedule[0]));
+      const { data } = await axios.post(`/api/v1/order/getsinglework`, payload, config);
+      dispatch(WORK_SUCCESS(data.data));
 
     } catch (error) {
       dispatch(WORK_FAIL(error.message));
@@ -87,7 +87,7 @@ export function updateWork(editId, payload) {
       dispatch(UPDATE_WORK_REQUEST());
 
       const config = { headers: { "Content-Type": "application/json" } };
-      let endpoint = `/api/v1/worker/updatework?id=${editId}`;
+      let endpoint = `/api/v1/order/completework?id=${editId}`;
       const { data } = await axios.post(endpoint, payload, config);
 
       console.log("data.data-->", data);
@@ -95,19 +95,20 @@ export function updateWork(editId, payload) {
       toast.success(data.data);
 
     } catch (error) {
+      console.log("error--->", error);
       dispatch(UPDATE_WORK_FAIL(error.message));
-      toast.error(error.response);
+      toast.error(error.response.data.message);
     }
   };
 }
 
-export function deleteWork(payload) {
+export function deleteWork(deleteId, payload) {
   return async (dispatch, getState) => {
     try {
       dispatch(DELETE_WORK_REQUEST());
 
       const config = { headers: { "Content-Type": "application/json" } };
-      let endpoint = `/api/v1/order/deletework`;
+      let endpoint = `/api/v1/order/deletework?id=${deleteId}`;
       const { data } = await axios.post(endpoint, payload, config);
       console.log("data-->", data);
       console.log("data.data.type == SUCCESS-->", data.data.type == "SUCCESS");
