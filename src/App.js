@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Ecommerce, Orders, Request, Schedule, Login, Error, Dashboard, Service, AddService, UpdateEvent, AddEvents, Work, ViewWork } from "./pages";
+import { Ecommerce, Orders, Request, Schedule, Login, Error, Dashboard, Service, AddService, UpdateEvent, AddEvents, Work, ViewWork,Profile } from "./pages";
 import "./App.css";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import { useSelector, useDispatch } from "react-redux";
@@ -28,6 +28,7 @@ const App = () => {
           path="/"
           component={Dashboard}
         /> */}
+          <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/work" element={<Work />} />
           <Route exact path="/work/view/:id" element={<ViewWork />} />
           <Route exact path="/request" element={<Request />} />
