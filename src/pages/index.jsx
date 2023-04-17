@@ -12,3 +12,4 @@ export { default as AddEvents } from './AddEvents';
 export { default as UpdateEvent } from './UpdateEvent';
 export { default as Work } from './Work';
 export { default as ViewWork } from './ViewWork';
+export { default as Profile } from './profile/Profile';
