@@ -24,9 +24,13 @@ import requestSlice from './requestSlice/requestSlice';
 import workDetailsSlice from './workSlice/workDetailSlice';
 import allWorkDetailSlice from './workSlice/allWorkDetailSlice';
 import workSlice from './workSlice/workSlice';
+import updatePassword from "./workerSlice/updatePassword";
+import forgotPasswordSlice from "./workerSlice/forgotPasswordSlice";
 
 let rootReducer = combineReducers({
     worker: workerSlice,
+    updatePassword: updatePassword,
+    forgotPassword: forgotPasswordSlice,
 
     // category slice
     allCategory: allCategorySlice,
