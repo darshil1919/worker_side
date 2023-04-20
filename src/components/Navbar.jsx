@@ -8,6 +8,7 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import avatar from '../data/avatar.jpg';
 import { UserProfile } from '.';
 import { useStateContext } from '../contexts/ContextProvider';
+import { useSelector } from 'react-redux';
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
   <TooltipComponent content={title} position="BottomCenter">
@@ -28,6 +29,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
 
 const Navbar = () => {
   const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, setScreenSize, screenSize } = useStateContext();
+  const {worker} = useSelector((state) => state.worker);
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
@@ -61,13 +63,13 @@ const Navbar = () => {
           >
             <img
               className="rounded-full w-8 h-8"
-              src={avatar}
+              src={`/image/workerImages/${worker?.avatar}`}
               alt="user-profile"
             />
             <p>
               <span className="text-gray-400 text-14">Hi,</span>{' '}
               <span className="text-gray-400 font-bold ml-1 text-14">
-                Michael
+                {worker?.firstName}
               </span>
             </p>
             <MdKeyboardArrowDown className="text-gray-400 text-14" />

@@ -31,7 +31,6 @@ import { AiFillEye } from "react-icons/ai";
 import {
   DELETE_WORK_RESET,
 } from '../store/slice/workSlice/workSlice';
-import Loading from '../components/small/Loading';
 
 const DEFAULT_ROWS_PER_PAGE = 5;
 const DEFAULT_ORDER = 'asc';
@@ -139,6 +138,10 @@ const Work = () => {
 
   const dropDownChange = (event) => {
     setSelectText(event.value);
+  }
+
+  if(allWorkLoader){
+    return <Loader />
   }
 
   return (
