@@ -1,6 +1,9 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 import workerSlice from './workerSlice/workerSlice';
+
+import dashboardSlice from './dashboardSlice/dashboardSlice';
+
 import allCategorySlice from './categorySlice/allCategorySlice';
 import newCategorySlice from './categorySlice/newCategorySlice';
 import categorySlice from './categorySlice/categorySlice';
@@ -27,6 +30,8 @@ import workSlice from './workSlice/workSlice';
 
 let rootReducer = combineReducers({
     worker: workerSlice,
+
+    dashboard: dashboardSlice,
 
     // category slice
     allCategory: allCategorySlice,
