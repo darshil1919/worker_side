@@ -29,6 +29,9 @@ const ViewWork = () => {
   const { workDetail, loading: workLoading } = useSelector((state) => {
     return state.workDetail;
   });
+
+  console.log("workDetail------>", workDetail);
+
   const getSingleOrder = async () => {
     setTimeout(
       function () {
@@ -114,17 +117,22 @@ const ViewWork = () => {
               <h2 className="font-bold text-2xl">View Order</h2>
             </div>
 
-            <div className="py-3 px-2 flex justify-center align-middle">
-              <h2 className="font-bold text-2xl">{workDetail?.status}</h2>
+            <div className="flex flex-col items-center md:flex-row justify-between">
+              <div className="py-3 px-2 flex justify-around align-middle">
+                <p className="font-bold text-2xl">{workDetail?.status}</p>
+              </div>
+              <div className="py-1 px-2 flex justify-center align-middle">
+                <h2 className="">Order Id: {workDetail?._id}</h2>
+              </div>
             </div>
 
             <div className="">
-              <div className="flex flex-col md:flex-row">
-                <div className="basis-5/5 p-3 md:basis-3/5">
+              <div className="flex flex-col lg:flex-row">
+                <div className="basis-5/5 p-3 lg:basis-3/5">
                   <div className="font-semibold text-lg capitalize pb-2.5 text-center">
                     {workDetail?.categoryDetail?.categoryName}
                   </div>
-                  <div>
+                  <div className="overflow-x-auto">
                     <div className="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
                       <table className="min-w-full text-center leading-normal">
                         <thead>
@@ -153,13 +161,19 @@ const ViewWork = () => {
                     </div>
                   </div>
                 </div>
-                <div className="basis-5/5 p-3 md:basis-2/5">
+                <div className="basis-5/5 p-3 lg:basis-2/5">
                   <div>
                     <div className="font-semibold text-lg capitalize pb-2.5 text-center">
                       work detail
                     </div>
                     <div className="pb-2">
+                      <span className="font-semibold capitalize">Customer name: </span><span>{`${workDetail?.customerDetail?.firstName} ${workDetail?.customerDetail?.lastName}`}</span>
+                    </div>
+                    <div className="pb-2">
                       <span className="font-semibold capitalize">Address: </span><span>{`${workDetail?.serviceLocation?.address}, ${workDetail?.serviceLocation?.city}, ${workDetail?.serviceLocation?.state}, ${workDetail?.serviceLocation?.pinCode}`}</span>
+                    </div>
+                    <div className="pb-2">
+                      <span className="font-semibold capitalize">contact No.: </span><span>{workDetail?.phone}</span>
                     </div>
                     <div className="pb-2">
                       <span className="font-semibold capitalize">start time: </span><span>{start
@@ -167,9 +181,6 @@ const ViewWork = () => {
                     </div>
                     <div className="pb-2">
                       <span className="font-semibold capitalize">end time: </span><span>{end}</span>
-                    </div>
-                    <div className="pb-2">
-                      <span className="font-semibold capitalize">contact No.: </span><span>{workDetail?.grandTotal}</span>
                     </div>
                     <div className="pb-2">
                       <span className="font-semibold capitalize">grand total: </span><span>₹{workDetail?.grandTotal}</span>

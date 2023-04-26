@@ -6,7 +6,9 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { FiShoppingBag } from 'react-icons/fi';
 import { RiContactsLine } from 'react-icons/ri';
 import { IoMdContacts } from 'react-icons/io';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineShoppingCart, AiOutlineSchedule } from 'react-icons/ai';
+import { GoRequestChanges } from 'react-icons/go';
+import { MdWorkOutline } from 'react-icons/md';
 
 import { useStateContext } from '../contexts/ContextProvider';
 
@@ -73,7 +75,7 @@ const Sidebar = () => {
                 })}
                 className={({ isActive }) => (isActive ? activeLink : normalLink)}
               >
-                <AiOutlineShoppingCart />
+                <MdWorkOutline />
                 <span className="capitalize ">work</span>
               </NavLink>
               <NavLink
@@ -85,7 +87,7 @@ const Sidebar = () => {
                 })}
                 className={({ isActive }) => (isActive ? activeLink : normalLink)}
               >
-                <IoMdContacts />
+                <GoRequestChanges />
                 <span className="capitalize ">request</span>
               </NavLink>
               <NavLink
@@ -97,10 +99,10 @@ const Sidebar = () => {
                 })}
                 className={({ isActive }) => (isActive ? activeLink : normalLink)}
               >
-                <RiContactsLine />
-                <span className="capitalize ">schedule</span>
+                <AiOutlineSchedule />
+                <span className="capitalize">schedule</span>
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/service"
                 key="service"
                 onClick={handleCloseSideBar}
@@ -111,7 +113,7 @@ const Sidebar = () => {
               >
                 <RiContactsLine />
                 <span className="capitalize">Service</span>
-              </NavLink>
+              </NavLink> */}
             </div>
           </div>
         </>

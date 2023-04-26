@@ -25,6 +25,7 @@ const Popping = ({ open, handleClose, eventDetail, deleteEvent, setOpen, renderS
       tomorrow.setDate(tomorrow.getDate() + 1);
       // const isDateLessThanToday = myDate < today;
       setDisabled(myDate < tomorrow);
+      setDisabled(eventDetail.title == 'work');
     }
   }, [eventDetail]);
 
