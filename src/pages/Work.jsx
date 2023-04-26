@@ -140,10 +140,6 @@ const Work = () => {
     setSelectText(event.value);
   }
 
-  if(allWorkLoader){
-    return <Loader />
-  }
-
   return (
     <>
       {allWorkLoader && false ?
