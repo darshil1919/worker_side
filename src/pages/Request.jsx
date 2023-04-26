@@ -54,54 +54,62 @@ const Request = ({
       <Header category="Page" title="Request" />
 
       <div>
-        {allRequest?.map((data, index) => {
-          let start = moment(data?.startTime).format("ddd DD MMM YY LT");
-          let end = moment(data?.endTime).format("ddd DD MMM YY LT");
-          return (
-            <div
-              key={index}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 shadow-lg shadow-blue-500 my-10 hover:shadow-gray-500"
-            >
-              <div className="flex flex-col  p-4">
-                <div>
-                  <p>category: {data.categoryDetail.categoryName}</p>
-                </div>
-                <div>
-                  <p>Start Time: {start}</p>
-                </div>
-                <div>
-                  <p>End Time: {end}</p>
-                </div>
-                <div>
-                  <p>
-                    address:{" "}
-                    {`${data.serviceLocation.address}, ${data.serviceLocation.city}, ${data.serviceLocation.state}, ${data.serviceLocation.pinCode}`}
-                  </p>
-                </div>
-              </div>
-
-              <div className=" justify-end p-4">
-                <div className="pb-3">
-                  <p>price: ₹{data.grandTotal}</p>
-                </div>
-                <IconButton
-                  variant="contained"
-                  onClick={() => openEventClick(data)}
+        {allRequest.length ?
+          (
+            allRequest?.map((data, index) => {
+              let start = moment(data?.startTime).format("ddd DD MMM YY LT");
+              let end = moment(data?.endTime).format("ddd DD MMM YY LT");
+              return (
+                <div
+                  key={index}
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 shadow-lg shadow-blue-500 my-10 hover:shadow-gray-500"
                 >
-                  <AiFillEye fill="#a855f7" />
-                </IconButton>
-              </div>
+                  <div className="flex flex-col  p-4">
+                    <div>
+                      <p>category: {data.categoryDetail.categoryName}</p>
+                    </div>
+                    <div>
+                      <p>Start Time: {start}</p>
+                    </div>
+                    <div>
+                      <p>End Time: {end}</p>
+                    </div>
+                    <div>
+                      <p>
+                        address:{" "}
+                        {`${data.serviceLocation.address}, ${data.serviceLocation.city}, ${data.serviceLocation.state}, ${data.serviceLocation.pinCode}`}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className=" justify-end p-4">
+                    <div className="pb-3">
+                      <p>price: ₹{data.grandTotal}</p>
+                    </div>
+                    <IconButton
+                      variant="contained"
+                      onClick={() => openEventClick(data)}
+                    >
+                      <AiFillEye fill="#a855f7" />
+                    </IconButton>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <div className="text-center font-semibold">
+              No Request Available
             </div>
-          );
-        })}
-        <RequestDialog
-          open={open}
-          setOpen={setOpen}
-          // handleOpen={openEventClick}
-          handleClose={closeEventClick}
-          dialogData={dialogData}
-        />
+          )
+        }
       </div>
+      <RequestDialog
+        open={open}
+        setOpen={setOpen}
+        // handleOpen={openEventClick}
+        handleClose={closeEventClick}
+        dialogData={dialogData}
+      />
     </div>
   );
 };

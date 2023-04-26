@@ -18,7 +18,7 @@ export function getWorkerDashboard(payload) {
 
       dispatch(DASHBOARD_SUCCESS(data.data));
     } catch (error) {
-      dispatch(ALL_CATEGODASHBOARD_FAILRY_FAIL(error.message));
+      dispatch(DASHBOARD_FAIL(error.message));
     }
   };
 }
