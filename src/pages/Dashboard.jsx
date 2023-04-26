@@ -116,7 +116,7 @@ const Dashboard = () => {
                 <p className="font-semibold text-white text-2xl">Monthly Revenue</p>
 
                 <div>
-                  <p className="text-white mt-6">{dashboard.monthlyEarning ? `${dashboard?.monthlyEarning[dashboard?.monthlyEarning.length - 1].month} ${dashboard?.monthlyEarning[dashboard?.monthlyEarning.length - 1].year}` : null}</p>
+                  <p className="text-white mt-6">{dashboard?.monthlyEarning ? `${dashboard?.monthlyEarning[dashboard?.monthlyEarning.length - 1]?.month} ${dashboard?.monthlyEarning[dashboard?.monthlyEarning.length - 1].year}` : null}</p>
                   <p className="text-2xl text-white font-semibold">₹{dashboard.monthlyEarning ? dashboard?.monthlyEarning[dashboard?.monthlyEarning.length - 1].total : null}</p>
                 </div>
               </div>
